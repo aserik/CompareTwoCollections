@@ -46,5 +46,26 @@ namespace ClassLibrary1.Tests
             var result = CollectionComparer.Compare(col1, col2);
             Assert.IsFalse(result);
         }
+
+        [TestMethod()]
+        public void CompareNullWithElements_ShouldNotBeEqualTest()
+        {
+            var col2 = new int[] { 1, 3, 2, 4, 4 };
+            var result = CollectionComparer.Compare(null, col2);
+            Assert.IsFalse(result);
+        }
+        [TestMethod()]
+        public void CompareElementsWithNull_ShouldNotBeEqualTest()
+        {
+            var col1 = new int[] { 1, 3, 2, 4, 4 };
+            var result = CollectionComparer.Compare(col1, null);
+            Assert.IsFalse(result);
+        }
+        [TestMethod()]
+        public void CompareNullWithNull_ShouldBeEqualTest()
+        {
+            var result = CollectionComparer.Compare(null, null);
+            Assert.IsTrue(result);
+        }
     }
 }
