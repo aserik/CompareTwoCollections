@@ -64,8 +64,45 @@ namespace ClassLibrary1.Tests
         [TestMethod()]
         public void CompareNullWithNull_ShouldBeEqualTest()
         {
-            var result = CollectionComparer.Compare(null, null);
+            var result = CollectionComparer.Compare <int> (null, null);
             Assert.IsTrue(result);
         }
+        [TestMethod()]
+        public void CompareStringWithString_ShouldBeEqualTest()
+        {
+            var col1 = new[] {"Ann", "Max", "Nik"};
+            var col2 = new string[] { "Ann", "Max", "Nik" };
+            var result = CollectionComparer.Compare <string> (col1, col2);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void CompareLessStringWithString_ShouldBeEqualTest()
+        {
+            var col1 = new[] { "Ann", "Max" };
+            var col2 = new string[] { "Ann", "Max", "Nik" };
+            var result = CollectionComparer.Compare<string>(col1, col2);
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void CompareDoubleWithDouble_ShouldBeEqualTest()
+        {
+            var col1 = new[] { 2.1, 3.5, 4.6 };
+            var col2 = new double[] { 2.1, 3.5, 4.6 };
+            var result = CollectionComparer.Compare<double>(col1, col2);
+            Assert.IsTrue(result);
+        }
+
+
+        [TestMethod()]
+        public void CompareWithTheSameValues_ShouldBeNotEqualTest()
+        {
+            var col1 = new[] { 1, 1, 1, 1, 1 };
+            var col2 = new int[] { 1, 1, 1, 1, 1 };
+            var result = CollectionComparer.Compare(col1, col2);
+            Assert.IsTrue(result);
+        }
+
     }
 }
