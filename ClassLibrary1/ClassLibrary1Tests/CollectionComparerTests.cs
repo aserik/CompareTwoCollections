@@ -96,7 +96,7 @@ namespace ClassLibrary1.Tests
 
 
         [TestMethod()]
-        public void CompareWithTheSameValues_ShouldBeNotEqualTest()
+        public void CompareWithTheSameValues_ShouldBeEqualTest()
         {
             var col1 = new[] { 1, 1, 1, 1, 1 };
             var col2 = new int[] { 1, 1, 1, 1, 1 };
@@ -104,5 +104,13 @@ namespace ClassLibrary1.Tests
             Assert.IsTrue(result);
         }
 
+        [TestMethod()]
+        public void CompareTheElementsFromExample_ShouldBeNotEqualTest()
+        {
+            var col1 = new[] { 1, 1, 1, 2, 3 };
+            var col2 = new int[] { 1, 2, 4};
+            var result = CollectionComparer.Compare(col1, col2);
+            Assert.IsFalse(result);
+        } 
     }
 }
